@@ -80,13 +80,14 @@ class PhotoPicker {
     int rowCount = 4,
     int maxSelected = 9,
     double padding = 0.5,
+    Brightness brightness = Brightness.dark,
     double itemRadio = 1.0,
     Color themeColor,
     Color dividerColor,
     Color textColor,
     Color disableColor,
     int thumbSize = 64,
-    I18nProvider provider = I18nProvider.chinese,
+    I18nProvider provider = I18nProvider.english,
     SortDelegate sortDelegate,
     CheckBoxBuilderDelegate checkBoxBuilderDelegate,
     LoadingDelegate loadingDelegate,
@@ -124,6 +125,7 @@ class PhotoPicker {
       loadingDelegate: loadingDelegate,
       badgeDelegate: badgeDelegate,
       pickType: pickType,
+      brightness: brightness
     );
 
     return PhotoPicker()._pickAsset(

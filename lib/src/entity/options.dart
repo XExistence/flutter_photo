@@ -33,6 +33,8 @@ class Options {
 
   final PickType pickType;
 
+  final Brightness brightness;
+
   const Options({
     this.rowCount,
     this.maxSelected,
@@ -48,6 +50,7 @@ class Options {
     this.loadingDelegate,
     this.badgeDelegate,
     this.pickType,
+    this.brightness
   });
 }
 

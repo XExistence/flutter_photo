@@ -39,46 +39,57 @@ class __BottomWidgetState extends State<_BottomWidget> {
     var textStyle = TextStyle(fontSize: 14.0);
     const textPadding = const EdgeInsets.symmetric(horizontal: 16.0);
     return Container(
-      color: options.themeColor,
+      color: Colors.transparent,
       child: SafeArea(
         bottom: true,
         top: false,
         child: Container(
+          decoration: BoxDecoration(
+            color: options.dividerColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                offset: Offset(0.0,-4), //(x,y)
+                blurRadius: 2.0,
+              ),
+            ],
+          ),
           height: 52.0,
           child: Row(
             children: <Widget>[
-              FlatButton(
-                onPressed: _showGallerySelectDialog,
-                splashColor: Colors.transparent,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 44.0,
-                  padding: textPadding,
-                  child: Text(
-                    widget.galleryName,
-                    style: textStyle.copyWith(color: options.textColor),
-                  ),
+              Container(
+                margin: EdgeInsets.only(left: 10),
+                width: 50,
+                height: 50,
+                child: RawMaterialButton(
+                  onPressed: _showGallerySelectDialog,
+                  elevation: 2.0,
+                  child: SvgPicture.asset("assets/svg/folder.svg",
+                      color: options.brightness == Brightness.dark ? options.textColor : Colors.black),
+                  padding: EdgeInsets.all(15.0),
+                  shape: CircleBorder(),
                 ),
               ),
               Expanded(
                 child: Container(),
               ),
-              FlatButton(
-                onPressed: widget.onTapPreview,
-                textColor: options.textColor,
-                splashColor: Colors.transparent,
-                disabledTextColor: options.disableColor,
-                child: Container(
-                  height: 44.0,
-                  alignment: Alignment.center,
-                  child: Text(
-                    i18nProvider.getPreviewText(
-                        options, widget.selectedProvider),
-                    style: textStyle,
-                  ),
-                  padding: textPadding,
-                ),
-              ),
+//              FlatButton(
+//                onPressed: widget.onTapPreview,
+//                textColor: options.textColor,
+//                splashColor: Colors.transparent,
+//                disabledTextColor: options.disableColor,
+//                child: Container(
+//                  height: 44.0,
+//                  alignment: Alignment.center,
+//                  child: Text(
+////                    i18nProvider.getPreviewText(
+////                        options, widget.selectedProvider),
+//                    "Preview",
+//                    style: textStyle,
+//                  ),
+//                  padding: textPadding,
+//                ),
+//              ),
             ],
           ),
         ),

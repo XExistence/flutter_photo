@@ -108,7 +108,7 @@ class ENProvider extends I18nProvider {
 
   @override
   String getMaxTipText(Options options) {
-    return "Select ${options.maxSelected} pictures at most";
+    return "Select ${options.maxSelected} items at most.";
   }
 
   @override

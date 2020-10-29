@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:photo/src/delegate/badge_delegate.dart';
 import 'package:photo/src/delegate/loading_delegate.dart';
 import 'package:photo/src/engine/lru_cache.dart';
@@ -14,6 +16,7 @@ import 'package:photo/src/provider/i18n_provider.dart';
 import 'package:photo/src/provider/selected_provider.dart';
 import 'package:photo/src/ui/dialog/change_gallery_dialog.dart';
 import 'package:photo/src/ui/page/photo_preview_page.dart';
+import 'package:photo/src/ui/widget/logo.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 part './main/bottom_widget.dart';
@@ -121,30 +124,40 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         style: textStyle,
         child: Scaffold(
           appBar: AppBar(
+            brightness: options.brightness,
+            backgroundColor: options.dividerColor,
             leading: IconButton(
               icon: Icon(
-                Icons.close,
-                color: options.textColor,
+                const IconData(
+                  0xe900,
+                  fontFamily: 'close',
+                ),
+                size: 18,
+                color: options.brightness == Brightness.dark ?options.textColor : Colors.black,
               ),
               onPressed: _cancel,
             ),
-            title: Text(
-              i18nProvider.getTitleText(options),
-              style: TextStyle(
-                color: options.textColor,
-              ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Logo(width: 40,height: 40,padding: 0,brightness: options.brightness,color: options.themeColor,)
+              ],
             ),
             actions: <Widget>[
-              FlatButton(
-                splashColor: Colors.transparent,
-                child: Text(
-                  i18nProvider.getSureText(options, selectedCount),
-                  style: selectedCount == 0
-                      ? textStyle.copyWith(color: options.disableColor)
-                      : textStyle,
+
+              Container(
+                width: 50,
+                height: 50,
+                child: RawMaterialButton(
+                  onPressed: selectedCount == 0 ? null : sure,
+                  elevation: 2.0,
+                  child: SvgPicture.asset("assets/svg/tick.svg",
+                      color: options.brightness == Brightness.dark ?options.textColor : Colors.black),
+                  padding: EdgeInsets.all(15.0),
+                  shape: CircleBorder(),
                 ),
-                onPressed: selectedCount == 0 ? null : sure,
-              ),
+              )
             ],
           ),
           body: _buildBody(),
@@ -324,10 +337,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
 
   Widget _buildSelected(AssetEntity entity) {
     var currentSelected = containsEntity(entity);
-    return Positioned(
-      right: 0.0,
-      width: 36.0,
-      height: 36.0,
+    return Container(
       child: GestureDetector(
         onTap: () {
           changeCheck(!currentSelected, entity);
@@ -351,22 +361,33 @@ class _PhotoMainPageState extends State<PhotoMainPage>
           color: options.textColor,
         ),
       );
-      decoration = BoxDecoration(color: themeColor);
+      decoration = BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+          color: themeColor);
     } else {
       decoration = BoxDecoration(
         borderRadius: BorderRadius.circular(1.0),
         border: Border.all(
-          color: themeColor,
+          color: Colors.transparent,
         ),
       );
     }
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        decoration: decoration,
-        alignment: Alignment.center,
-        child: child,
+      child: Stack(
+        children: [
+          Container(),
+          Center(
+            child: AnimatedContainer(
+              width: 30,
+              height: 30,
+              duration: Duration(milliseconds: 200),
+              decoration: decoration,
+              alignment: Alignment.center,
+              child: child,
+            ),
+          )
+        ],
       ),
     );
   }

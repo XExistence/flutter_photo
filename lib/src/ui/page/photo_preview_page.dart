@@ -128,7 +128,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
       ),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: config.options.themeColor,
+          backgroundColor: config.options.dividerColor,
           leading: BackButton(
             color: options.textColor,
           ),
@@ -136,12 +136,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
             stream: pageStream,
             initialData: widget.initIndex,
             builder: (ctx, snap) {
-              return Text(
-                "${snap.data + 1}/$totalCount",
-                style: TextStyle(
-                  color: options.textColor,
-                ),
-              );
+              return Text("");
             },
           ),
           actions: <Widget>[
@@ -174,7 +169,16 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
 
   Widget _buildBottom() {
     return Container(
-      color: themeColor,
+      decoration: BoxDecoration(
+        color: options.dividerColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            offset: Offset(0.0,-4), //(x,y)
+            blurRadius: 2.0,
+          ),
+        ],
+      ),
       child: SafeArea(
         child: Container(
           height: 52.0,
