@@ -10,14 +10,14 @@ typedef VoidCallback();
 class Throttle {
   Duration duration;
 
-  VoidCallback onCall;
+  VoidCallback? onCall;
 
   bool _isRunning = false;
 
-  Timer _timer;
+  Timer? _timer;
 
   Throttle({
-    @required this.onCall,
+    required this.onCall,
     this.duration = const Duration(seconds: 2),
   });
 

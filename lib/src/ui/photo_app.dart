@@ -8,12 +8,12 @@ import 'package:photo/src/provider/i18n_provider.dart';
 import 'package:photo/src/ui/page/photo_main_page.dart';
 
 class PhotoApp extends StatelessWidget {
-  final Options options;
-  final I18nProvider provider;
-  final List<AssetPathEntity> photoList;
-  final List<AssetEntity> pickedAssetList;
+  final Options? options;
+  final I18nProvider? provider;
+  final List<AssetPathEntity>? photoList;
+  final List<AssetEntity>? pickedAssetList;
   const PhotoApp({
-    Key key,
+    Key? key,
     this.options,
     this.provider,
     this.photoList,

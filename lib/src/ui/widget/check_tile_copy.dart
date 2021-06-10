@@ -2,9 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/material.dart' hide Checkbox, CheckboxListTile;
+import 'package:flutter/material.dart';
 
-import 'package:photo/src/ui/widget/check_box_copy.dart';
 
 /// A [ListTile] with a [Checkbox]. In other words, a checkbox with a label.
 ///
@@ -74,9 +73,9 @@ class CheckboxListTile extends StatelessWidget {
   /// * [onChanged], which is called when the value of the checkbox should
   ///   change. It can be set to null to disable the checkbox.
   const CheckboxListTile({
-    Key key,
-    @required this.value,
-    @required this.onChanged,
+    Key? key,
+    required this.value,
+    required this.onChanged,
     this.activeColor,
     this.checkColor,
     this.title,
@@ -121,29 +120,29 @@ class CheckboxListTile extends StatelessWidget {
   ///   title: Text('Throw away your shot'),
   /// )
   /// ```
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool?> onChanged;
 
   /// The color to use when this checkbox is checked.
   ///
   /// Defaults to accent color of the current [Theme].
-  final Color activeColor;
+  final Color? activeColor;
 
-  final Color checkColor;
+  final Color? checkColor;
 
   /// The primary content of the list tile.
   ///
   /// Typically a [Text] widget.
-  final Widget title;
+  final Widget? title;
 
   /// Additional content displayed below the title.
   ///
   /// Typically a [Text] widget.
-  final Widget subtitle;
+  final Widget? subtitle;
 
   /// A widget to display on the opposite side of the tile from the checkbox.
   ///
   /// Typically an [Icon] widget.
-  final Widget secondary;
+  final Widget? secondary;
 
   /// Whether this list tile is intended to display three lines of text.
   ///
@@ -154,7 +153,7 @@ class CheckboxListTile extends StatelessWidget {
   /// Whether this list tile is part of a vertically dense list.
   ///
   /// If this property is null then its value is based on [ListTileTheme.dense].
-  final bool dense;
+  final bool? dense;
 
   /// Whether to render icons and text in the [activeColor].
   ///
@@ -177,7 +176,7 @@ class CheckboxListTile extends StatelessWidget {
       activeColor: activeColor,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
-    Widget leading, trailing;
+    Widget? leading, trailing;
     switch (controlAffinity) {
       case ListTileControlAffinity.leading:
         leading = control;

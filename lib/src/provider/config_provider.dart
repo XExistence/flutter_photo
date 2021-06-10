@@ -6,16 +6,16 @@ import 'package:photo_manager/photo_manager.dart';
 
 // ignore_for_file: deprecated_member_use
 class PhotoPickerProvider extends InheritedWidget {
-  final Options options;
-  final I18nProvider provider;
+  final Options? options;
+  final I18nProvider? provider;
   final AssetProvider assetProvider = AssetProvider();
-  final List<AssetEntity> pickedAssetList;
+  final List<AssetEntity>? pickedAssetList;
   PhotoPickerProvider({
-    @required this.options,
-    @required this.provider,
-    @required Widget child,
+    required this.options,
+    required this.provider,
+    required Widget child,
     this.pickedAssetList,
-    Key key,
+    Key? key,
   }) : super(key: key, child: child);
 
   @override
@@ -23,9 +23,9 @@ class PhotoPickerProvider extends InheritedWidget {
     return true;
   }
 
-  static PhotoPickerProvider of(BuildContext context) =>
-      context.inheritFromWidgetOfExactType(PhotoPickerProvider);
+  static PhotoPickerProvider? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<PhotoPickerProvider>();
 
   static AssetProvider assetProviderOf(BuildContext context) =>
-      of(context).assetProvider;
+      of(context)!.assetProvider;
 }

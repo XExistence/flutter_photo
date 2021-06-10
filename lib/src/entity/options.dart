@@ -5,33 +5,33 @@ import 'package:photo/src/delegate/loading_delegate.dart';
 import 'package:photo/src/delegate/sort_delegate.dart';
 
 class Options {
-  final int rowCount;
+  final int? rowCount;
 
-  final int maxSelected;
+  final int? maxSelected;
 
-  final double padding;
+  final double? padding;
 
-  final double itemRadio;
+  final double? itemRadio;
 
-  final Color themeColor;
+  final Color? themeColor;
 
-  final Color dividerColor;
+  final Color? dividerColor;
 
-  final Color textColor;
+  final Color? textColor;
 
-  final Color disableColor;
+  final Color? disableColor;
 
-  final int thumbSize;
+  final int? thumbSize;
 
-  final SortDelegate sortDelegate;
+  final SortDelegate? sortDelegate;
 
-  final CheckBoxBuilderDelegate checkBoxBuilderDelegate;
+  final CheckBoxBuilderDelegate? checkBoxBuilderDelegate;
 
-  final LoadingDelegate loadingDelegate;
+  final LoadingDelegate? loadingDelegate;
 
-  final BadgeDelegate badgeDelegate;
+  final BadgeDelegate? badgeDelegate;
 
-  final PickType pickType;
+  final PickType? pickType;
 
   const Options({
     this.rowCount,

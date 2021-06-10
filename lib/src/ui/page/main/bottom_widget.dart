@@ -1,21 +1,21 @@
 part of '../photo_main_page.dart';
 
 class _BottomWidget extends StatefulWidget {
-  final ValueChanged<AssetPathEntity> onGalleryChange;
+  final ValueChanged<AssetPathEntity>? onGalleryChange;
 
-  final Options options;
+  final Options? options;
 
-  final I18nProvider provider;
+  final I18nProvider? provider;
 
-  final SelectedProvider selectedProvider;
+  final SelectedProvider? selectedProvider;
 
   final String galleryName;
 
-  final GalleryListProvider galleryListProvider;
-  final VoidCallback onTapPreview;
+  final GalleryListProvider? galleryListProvider;
+  final VoidCallback? onTapPreview;
 
   const _BottomWidget({
-    Key key,
+    Key? key,
     this.onGalleryChange,
     this.options,
     this.provider,
@@ -30,16 +30,16 @@ class _BottomWidget extends StatefulWidget {
 }
 
 class __BottomWidgetState extends State<_BottomWidget> {
-  Options get options => widget.options;
+  Options? get options => widget.options;
 
-  I18nProvider get i18nProvider => widget.provider;
+  I18nProvider? get i18nProvider => widget.provider;
 
   @override
   Widget build(BuildContext context) {
     var textStyle = TextStyle(fontSize: 14.0);
     const textPadding = const EdgeInsets.symmetric(horizontal: 16.0);
     return Container(
-      color: options.themeColor,
+      color: options!.themeColor,
       child: SafeArea(
         bottom: true,
         top: false,
@@ -56,7 +56,7 @@ class __BottomWidgetState extends State<_BottomWidget> {
                   padding: textPadding,
                   child: Text(
                     widget.galleryName,
-                    style: textStyle.copyWith(color: options.textColor),
+                    style: textStyle.copyWith(color: options!.textColor),
                   ),
                 ),
               ),
@@ -65,14 +65,14 @@ class __BottomWidgetState extends State<_BottomWidget> {
               ),
               FlatButton(
                 onPressed: widget.onTapPreview,
-                textColor: options.textColor,
+                textColor: options!.textColor,
                 splashColor: Colors.transparent,
-                disabledTextColor: options.disableColor,
+                disabledTextColor: options!.disableColor,
                 child: Container(
                   height: 44.0,
                   alignment: Alignment.center,
                   child: Text(
-                    i18nProvider.getPreviewText(
+                    i18nProvider!.getPreviewText(
                         options, widget.selectedProvider),
                     style: textStyle,
                   ),
@@ -90,7 +90,7 @@ class __BottomWidgetState extends State<_BottomWidget> {
     var result = await showModalBottomSheet(
       context: context,
       builder: (ctx) => ChangeGalleryDialog(
-            galleryList: widget.galleryListProvider.galleryPathList,
+            galleryList: widget.galleryListProvider!.galleryPathList,
             i18n: i18nProvider,
             options: options,
           ),
