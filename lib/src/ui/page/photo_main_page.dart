@@ -47,20 +47,9 @@ class _PhotoMainPageState extends State<PhotoMainPage>
 
   Color? get themeColor => options!.themeColor;
 
-  AssetPathEntity? _currentPath;
+  AssetPathEntity? currentPath;
 
   bool _isInit = false;
-
-  AssetPathEntity? get currentPath {
-    if (_currentPath == null) {
-      return null;
-    }
-    return _currentPath;
-  }
-
-  set currentPath(AssetPathEntity? value) {
-    _currentPath = value;
-  }
 
   String get currentGalleryName {
     if (currentPath?.isAll == true) {
@@ -392,7 +381,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     //   setState(() {});
     // });
     if (assetPathEntity != assetProvider.current) {
-      assetProvider.current = assetPathEntity;
+      assetProvider.current = assetPathEntity!;
       await assetProvider.loadMore();
       setState(() {});
     }

@@ -30,7 +30,10 @@ class AssetProvider {
 
   bool get noMore => getPaging()?.noMore ?? false;
 
-  int get count => data?.length ?? 0;
+  int get count {
+    if(data.isNotEmpty) return data.length;
+        else return 0;
+  }
 }
 
 class AssetPaging {
@@ -44,7 +47,9 @@ class AssetPaging {
 
   bool noMore = false;
 
-  AssetPaging(this.path, {this.pageCount = 50});
+  AssetPaging(this.path, {
+        this.pageCount = 50
+      });
 
   Future<void> loadMore() async {
     if (noMore == true) {

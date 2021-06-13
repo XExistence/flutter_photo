@@ -81,10 +81,10 @@ class PhotoPicker {
     int maxSelected = 9,
     double padding = 0.5,
     double itemRadio = 1.0,
-    Color? themeColor,
-    Color? dividerColor,
-    Color? textColor,
-    Color? disableColor,
+    Color themeColor = Colors.black,
+    Color dividerColor = Colors.grey,
+    Color textColor = Colors.white,
+    Color disableColor = Colors.grey,
     int thumbSize = 64,
     I18nProvider provider = I18nProvider.chinese,
     SortDelegate? sortDelegate,
@@ -99,10 +99,10 @@ class PhotoPicker {
     assert(context != null, "context must be not null");
     assert(pickType != null, "pickType must be not null");
 
-    themeColor ??= Theme.of(context)?.primaryColor ?? Colors.black;
-    dividerColor ??= Theme.of(context)?.dividerColor ?? Colors.grey;
-    disableColor ??= Theme.of(context)?.disabledColor ?? Colors.grey;
-    textColor ??= Colors.white;
+    themeColor = Theme.of(context).primaryColor;
+    dividerColor = Theme.of(context).dividerColor;
+    disableColor = Theme.of(context).disabledColor;
+    textColor = Colors.white;
 
     sortDelegate ??= SortDelegate.common;
     checkBoxBuilderDelegate ??= DefaultCheckBoxBuilderDelegate();

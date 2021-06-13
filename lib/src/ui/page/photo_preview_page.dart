@@ -110,7 +110,11 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    int totalCount = assetProvider.current!.assetCount ?? 0;
+    int totalCount = 0;
+
+    if(assetProvider.current != null)
+      totalCount = assetProvider.current!.assetCount;
+
     if (!widget.isPreview) {
       totalCount = assetProvider.current!.assetCount;
     } else {
