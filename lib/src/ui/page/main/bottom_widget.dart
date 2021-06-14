@@ -45,7 +45,7 @@ class __BottomWidgetState extends State<_BottomWidget> {
         top: false,
         child: Container(
           decoration: BoxDecoration(
-            color: options.dividerColor,
+            color: options!.dividerColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.black12,
@@ -65,7 +65,7 @@ class __BottomWidgetState extends State<_BottomWidget> {
                   onPressed: _showGallerySelectDialog,
                   elevation: 2.0,
                   child: SvgPicture.asset("assets/svg/folder.svg",
-                      color: options.brightness == Brightness.dark ? options.textColor : Colors.black),
+                      color: options!.brightness == Brightness.dark ? options!.textColor : Colors.black),
                   padding: EdgeInsets.all(15.0),
                   shape: CircleBorder(),
                 ),

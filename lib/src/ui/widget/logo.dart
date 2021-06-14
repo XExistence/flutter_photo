@@ -10,7 +10,7 @@ class Logo extends StatefulWidget {
   Brightness brightness = Brightness.dark;
   Color color = Colors.white;
 
-  Logo({this.width, this.height, this.padding,this.brightness,this.color});
+  Logo({this.width = 50, this.height = 50, this.padding = 20,this.brightness = Brightness.dark,this.color = Colors.white});
 
   @override
   _LogoState createState() => _LogoState();

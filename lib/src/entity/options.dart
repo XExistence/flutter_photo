@@ -50,7 +50,7 @@ class Options {
     this.loadingDelegate,
     this.badgeDelegate,
     this.pickType,
-    this.brightness
+    required this.brightness
   });
 }
 

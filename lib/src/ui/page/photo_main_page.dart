@@ -113,8 +113,8 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         style: textStyle,
         child: Scaffold(
           appBar: AppBar(
-            brightness: options.brightness,
-            backgroundColor: options.dividerColor,
+            brightness: options!.brightness,
+            backgroundColor: options!.dividerColor,
             leading: IconButton(
               icon: Icon(
                 const IconData(
@@ -122,7 +122,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
                   fontFamily: 'close',
                 ),
                 size: 18,
-                color: options.brightness == Brightness.dark ?options.textColor : Colors.black,
+                color: options!.brightness == Brightness.dark ?options!.textColor : Colors.black,
               ),
               onPressed: _cancel,
             ),
@@ -130,7 +130,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Logo(width: 40,height: 40,padding: 0,brightness: options.brightness,color: options.themeColor,)
+                Logo(width: 40,height: 40,padding: 0,brightness: options!.brightness,color: options!.themeColor!,)
               ],
             ),
             actions: <Widget>[
@@ -142,7 +142,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
                   onPressed: selectedCount == 0 ? null : sure,
                   elevation: 2.0,
                   child: SvgPicture.asset("assets/svg/tick.svg",
-                      color: options.brightness == Brightness.dark ?options.textColor : Colors.black),
+                      color: options!.brightness == Brightness.dark ?options!.textColor : Colors.black),
                   padding: EdgeInsets.all(15.0),
                   shape: CircleBorder(),
                 ),

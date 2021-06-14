@@ -132,7 +132,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
       ),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: config.options.dividerColor,
+          backgroundColor: config!.options!.dividerColor,
           leading: BackButton(
             color: options!.textColor,
           ),
@@ -174,7 +174,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
   Widget _buildBottom() {
     return Container(
       decoration: BoxDecoration(
-        color: options.dividerColor,
+        color: options!.dividerColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
