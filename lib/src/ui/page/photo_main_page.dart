@@ -17,6 +17,7 @@ import 'package:photo/src/provider/selected_provider.dart';
 import 'package:photo/src/ui/dialog/change_gallery_dialog.dart';
 import 'package:photo/src/ui/page/photo_preview_page.dart';
 import 'package:photo/src/ui/widget/logo.dart';
+import 'package:photo/src/ui/widget/single_loading_indicator.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 part './main/bottom_widget.dart';
@@ -24,13 +25,13 @@ part './main/image_item.dart';
 
 class PhotoMainPage extends StatefulWidget {
   final ValueChanged<List<AssetEntity>>? onClose;
-  final Options? options;
+  final Options options;
   final List<AssetPathEntity>? photoList;
 
   const PhotoMainPage({
     Key? key,
     this.onClose,
-    this.options,
+    required this.options,
     this.photoList,
   }) : super(key: key);
 
@@ -40,7 +41,7 @@ class PhotoMainPage extends StatefulWidget {
 
 class _PhotoMainPageState extends State<PhotoMainPage>
     with SelectedProvider, GalleryListProvider {
-  Options? get options => widget.options;
+  Options get options => widget.options;
 
   I18nProvider? get i18nProvider => PhotoPickerProvider.of(context)!.provider;
   AssetProvider get assetProvider =>
@@ -48,7 +49,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
 
   List<AssetEntity> get list => assetProvider.data;
 
-  Color? get themeColor => options!.themeColor;
+  Color? get themeColor => options.themeColor;
 
   AssetPathEntity? currentPath;
 
@@ -104,17 +105,14 @@ class _PhotoMainPageState extends State<PhotoMainPage>
   @override
   Widget build(BuildContext context) {
     var textStyle = TextStyle(
-      color: options!.textColor,
+      color: options.textColor,
       fontSize: 14.0,
     );
-    return Theme(
-      data: Theme.of(context).copyWith(primaryColor: options!.themeColor),
-      child: DefaultTextStyle(
-        style: textStyle,
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
-            brightness: options!.brightness,
-            backgroundColor: options!.dividerColor,
+            elevation: 10,
+            brightness: options.brightness,
+            backgroundColor: widget.options.dividerColor,
             leading: IconButton(
               icon: Icon(
                 const IconData(
@@ -122,7 +120,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
                   fontFamily: 'close',
                 ),
                 size: 18,
-                color: options!.brightness == Brightness.dark ?options!.textColor : Colors.black,
+                color: options.brightness == Brightness.dark ?options.textColor : Colors.black,
               ),
               onPressed: _cancel,
             ),
@@ -130,7 +128,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Logo(width: 40,height: 40,padding: 0,brightness: options!.brightness,color: options!.themeColor!,)
+                Logo(width: 40,height: 40,padding: 0,brightness: options.brightness,color: options.themeColor!,)
               ],
             ),
             actions: <Widget>[
@@ -142,7 +140,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
                   onPressed: selectedCount == 0 ? null : sure,
                   elevation: 2.0,
                   child: SvgPicture.asset("assets/svg/tick.svg",
-                      color: options!.brightness == Brightness.dark ?options!.textColor : Colors.black),
+                      color: options.brightness == Brightness.dark ?options.textColor : Colors.black),
                   padding: EdgeInsets.all(15.0),
                   shape: CircleBorder(),
                 ),
@@ -160,8 +158,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
             selectedProvider: this,
             galleryListProvider: this,
           ),
-        ),
-      ),
+
     );
   }
 
@@ -172,7 +169,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
 
   @override
   bool isUpperLimit() {
-    var result = selectedCount == options!.maxSelected;
+    var result = selectedCount == options.maxSelected;
     if (result) _showTip(i18nProvider!.getMaxTipText(options));
     return result;
   }
@@ -190,7 +187,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         content: Text(
           msg,
           style: TextStyle(
-            color: options!.textColor,
+            color: options.textColor,
             fontSize: 14.0,
           ),
         ),
@@ -216,7 +213,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
 
   Future<void> _refreshListFromGallery() async {
     List<AssetPathEntity> pathList;
-    switch (options!.pickType) {
+    switch (options.pickType) {
       case PickType.onlyImage:
         pathList = await PhotoManager.getAssetPathList(type: RequestType.image);
         break;
@@ -236,7 +233,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
       return;
     }
 
-    options!.sortDelegate!.sort(pathList);
+    options.sortDelegate!.sort(pathList);
 
     galleryPathList.clear();
     galleryPathList.addAll(pathList);
@@ -267,14 +264,14 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     final count = assetProvider.count + (noMore ? 0 : 1);
 
     return Container(
-      color: options!.dividerColor,
+      color: options.dividerColor,
       child: GridView.builder(
         controller: scrollController,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: options!.rowCount!,
-          childAspectRatio: options!.itemRadio!,
-          crossAxisSpacing: options!.padding!,
-          mainAxisSpacing: options!.padding!,
+          crossAxisCount: options.rowCount!,
+          childAspectRatio: options.itemRadio!,
+          crossAxisSpacing: options.padding!,
+          mainAxisSpacing: options.padding!,
         ),
         itemBuilder: _buildItem,
         itemCount: count,
@@ -292,15 +289,16 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     var data = list[index];
     return RepaintBoundary(
       child: GestureDetector(
+
         onTap: () => _onItemClick(data, index),
         child: Stack(
           children: <Widget>[
             ImageItem(
               entity: data,
               themeColor: themeColor,
-              size: options!.thumbSize,
-              loadingDelegate: options!.loadingDelegate,
-              badgeDelegate: options!.badgeDelegate,
+              size: options.thumbSize,
+              loadingDelegate: options.loadingDelegate,
+              badgeDelegate: options.badgeDelegate,
             ),
             _buildMask(containsEntity(data)),
             _buildSelected(data),
@@ -347,7 +345,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 12.0,
-          color: options!.textColor,
+          color: options.textColor,
         ),
       );
       decoration = BoxDecoration(
@@ -485,8 +483,8 @@ class _PhotoMainPageState extends State<PhotoMainPage>
             width: 40.0,
             height: 40.0,
             padding: const EdgeInsets.all(5.0),
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(themeColor),
+            child: SingleLoadingIndicator(
+              padding: EdgeInsets.all(10),
             ),
           ),
           Padding(
@@ -513,7 +511,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
 
   void _onPhotoRefresh() async {
     List<AssetPathEntity> pathList;
-    switch (options!.pickType) {
+    switch (options.pickType) {
       case PickType.onlyImage:
         pathList = await PhotoManager.getAssetPathList(type: RequestType.image);
         break;

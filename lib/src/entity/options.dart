@@ -15,7 +15,7 @@ class Options {
 
   final Color? themeColor;
 
-  final Color? dividerColor;
+  final Color dividerColor;
 
   final Color? textColor;
 
@@ -41,7 +41,7 @@ class Options {
     this.padding,
     this.itemRadio,
     this.themeColor,
-    this.dividerColor,
+    required this.dividerColor,
     this.textColor,
     this.disableColor,
     this.thumbSize,

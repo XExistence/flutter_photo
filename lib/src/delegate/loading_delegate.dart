@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:photo/src/ui/widget/single_loading_indicator.dart';
+import 'package:photo/src/ui/widget/single_loading_indicator.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 abstract class LoadingDelegate {
@@ -17,8 +19,8 @@ class DefaultLoadingDelegate extends LoadingDelegate {
       child: Container(
         width: 30.0,
         height: 30.0,
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(themeColor),
+        child: SingleLoadingIndicator(
+          padding: EdgeInsets.all(10),
         ),
       ),
     );
@@ -31,8 +33,8 @@ class DefaultLoadingDelegate extends LoadingDelegate {
       child: Container(
         width: 30.0,
         height: 30.0,
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(themeColor),
+        child: SingleLoadingIndicator(
+          padding: EdgeInsets.all(10),
         ),
       ),
     );

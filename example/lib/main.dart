@@ -119,6 +119,19 @@ class _MyHomePageState extends State<MyHomePage> with LoadingDelegate {
     _pickAsset(PickType.all, pathList: assetPathList);
   }
 
+  Map<int, Color> colorCodes = {
+    50: Color.fromRGBO(22, 22, 22, .1),
+    100: Color.fromRGBO(22, 22, 22, .2),
+    200: Color.fromRGBO(22, 22, 22, .3),
+    300: Color.fromRGBO(22, 22, 22, .4),
+    400: Color.fromRGBO(22, 22, 22, .5),
+    500: Color.fromRGBO(22, 22, 22, .6),
+    600: Color.fromRGBO(22, 22, 22, .7),
+    700: Color.fromRGBO(22, 22, 22, .8),
+    800: Color.fromRGBO(22, 22, 22, .9),
+    900: Color.fromRGBO(22, 22, 22, 1),
+  };
+
   void _pickAsset(PickType type, {List<AssetPathEntity> pathList}) async {
     /// context is required, other params is optional.
     /// context is required, other params is optional.
@@ -131,14 +144,17 @@ class _MyHomePageState extends State<MyHomePage> with LoadingDelegate {
       context: context,
 
       /// The following are optional parameters.
-      themeColor: Colors.green,
+      themeColor: Colors.red,
       // the title color and bottom color
+      brightness: Brightness.dark,
 
       textColor: Colors.white,
       // text color
       padding: 1.0,
       // item padding
-      dividerColor: Colors.grey,
+      //dividerColor: Color.fromARGB(255, 22, 22, 22),
+      dividerColor: MaterialColor(Color.fromARGB(255, 22, 22, 22).value, colorCodes),
+      //dividerColor: Colors.red,
       // divider color
       disableColor: Colors.grey.shade300,
       // the check box disable color
