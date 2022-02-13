@@ -64,8 +64,11 @@ class __BottomWidgetState extends State<_BottomWidget> {
                 child: RawMaterialButton(
                   onPressed: _showGallerySelectDialog,
                   elevation: 2.0,
-                  child: SvgPicture.asset("assets/svg/folder.svg",
-                      color: options!.brightness == Brightness.dark ? options!.textColor : Colors.black),
+                  child: Icon(
+                    EvaIcons.folderOutline,
+                    size: 25,
+                    color: options!.brightness == Brightness.dark ? Colors.white : Colors.black87,
+                  ),
                   padding: EdgeInsets.all(15.0),
                   shape: CircleBorder(),
                 ),

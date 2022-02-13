@@ -86,6 +86,7 @@ class PhotoPicker {
     Color dividerColor = Colors.deepOrange,
     Color textColor = Colors.white,
     Color disableColor = Colors.grey,
+    required Widget logo,
     int thumbSize = 64,
     I18nProvider provider = I18nProvider.english,
     SortDelegate? sortDelegate,
@@ -103,6 +104,7 @@ class PhotoPicker {
 
     var options = Options(
       rowCount: rowCount,
+      logo: logo,
       dividerColor: dividerColor,
       maxSelected: maxSelected,
       itemRadio: itemRadio,

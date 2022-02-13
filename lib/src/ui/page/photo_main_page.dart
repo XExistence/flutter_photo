@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -115,11 +116,8 @@ class _PhotoMainPageState extends State<PhotoMainPage>
             backgroundColor: widget.options.dividerColor,
             leading: IconButton(
               icon: Icon(
-                const IconData(
-                  0xe900,
-                  fontFamily: 'close',
-                ),
-                size: 18,
+                EvaIcons.close,
+                size: 29,
                 color: options.brightness == Brightness.dark ?options.textColor : Colors.black,
               ),
               onPressed: _cancel,
@@ -128,7 +126,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Logo(width: 40,height: 40,padding: 0,brightness: options.brightness,color: options.themeColor!,)
+                SizedBox(width: 40,height: 40,child: options.logo,)
               ],
             ),
             actions: <Widget>[
@@ -139,8 +137,11 @@ class _PhotoMainPageState extends State<PhotoMainPage>
                 child: RawMaterialButton(
                   onPressed: selectedCount == 0 ? null : sure,
                   elevation: 2.0,
-                  child: SvgPicture.asset("assets/svg/tick.svg",
-                      color: options.brightness == Brightness.dark ?options.textColor : Colors.black),
+                  child: Icon(
+                    EvaIcons.checkmarkCircle2Outline,
+                    size: 25,
+                    color: options.brightness == Brightness.dark ? Colors.white : Colors.black87,
+                  ),
                   padding: EdgeInsets.all(15.0),
                   shape: CircleBorder(),
                 ),
