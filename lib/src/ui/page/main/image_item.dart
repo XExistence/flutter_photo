@@ -28,7 +28,7 @@ class ImageItem extends StatelessWidget {
     }
 
     return FutureBuilder<Uint8List?>(
-      future: entity!.thumbDataWithSize(size!, size!),
+      future: entity!.thumbnailDataWithSize(ThumbnailSize(size!, size!)),
       builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
         var futureData = snapshot.data;
         if (snapshot.connectionState == ConnectionState.done &&

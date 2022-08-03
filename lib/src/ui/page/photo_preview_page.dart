@@ -112,7 +112,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
   Widget build(BuildContext context) {
     int totalCount = 0;
 
-    if(assetProvider.current != null)
+    if (assetProvider.current != null)
       totalCount = assetProvider.current!.assetCount;
 
     if (!widget.isPreview) {
@@ -178,7 +178,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
-            offset: Offset(0.0,-4), //(x,y)
+            offset: Offset(0.0, -4), //(x,y)
             blurRadius: 2.0,
           ),
         ],
@@ -384,8 +384,8 @@ class _BigPhotoImageState extends State<BigPhotoImage>
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return FutureBuilder(
-      future:
-          widget.assetEntity!.thumbDataWithSize(width.floor(), height.floor()),
+      future: widget.assetEntity!
+          .thumbnailDataWithSize(ThumbnailSize(width.floor(), height.floor())),
       builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
         var file = snapshot.data;
         if (snapshot.connectionState == ConnectionState.done && file != null) {

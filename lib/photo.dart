@@ -3,25 +3,24 @@ library photo;
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:photo/src/engine/lru_cache.dart';
-
-import 'package:photo_manager/photo_manager.dart';
-
 import 'package:photo/src/delegate/badge_delegate.dart';
 import 'package:photo/src/delegate/checkbox_builder_delegate.dart';
 import 'package:photo/src/delegate/loading_delegate.dart';
 import 'package:photo/src/delegate/sort_delegate.dart';
+import 'package:photo/src/engine/lru_cache.dart';
 import 'package:photo/src/entity/options.dart';
 import 'package:photo/src/provider/i18n_provider.dart';
 import 'package:photo/src/ui/dialog/not_permission_dialog.dart';
 import 'package:photo/src/ui/photo_app.dart';
+import 'package:photo_manager/photo_manager.dart';
+
+export 'package:photo/src/delegate/badge_delegate.dart';
 export 'package:photo/src/delegate/checkbox_builder_delegate.dart';
 export 'package:photo/src/delegate/loading_delegate.dart';
 export 'package:photo/src/delegate/sort_delegate.dart';
+export 'package:photo/src/entity/options.dart' show PickType;
 export 'package:photo/src/provider/i18n_provider.dart'
     show I18NCustomProvider, I18nProvider, CNProvider, ENProvider;
-export 'package:photo/src/entity/options.dart' show PickType;
-export 'package:photo/src/delegate/badge_delegate.dart';
 
 class PhotoPicker {
   static PhotoPicker? _instance;
@@ -103,23 +102,22 @@ class PhotoPicker {
     loadingDelegate ??= DefaultLoadingDelegate();
 
     var options = Options(
-      rowCount: rowCount,
-      logo: logo,
-      dividerColor: dividerColor,
-      maxSelected: maxSelected,
-      itemRadio: itemRadio,
-      padding: padding,
-      disableColor: disableColor,
-      textColor: textColor,
-      themeColor: themeColor,
-      thumbSize: thumbSize,
-      sortDelegate: sortDelegate,
-      checkBoxBuilderDelegate: checkBoxBuilderDelegate,
-      loadingDelegate: loadingDelegate,
-      badgeDelegate: badgeDelegate,
-      pickType: pickType,
-      brightness: brightness
-    );
+        rowCount: rowCount,
+        logo: logo,
+        dividerColor: dividerColor,
+        maxSelected: maxSelected,
+        itemRadio: itemRadio,
+        padding: padding,
+        disableColor: disableColor,
+        textColor: textColor,
+        themeColor: themeColor,
+        thumbSize: thumbSize,
+        sortDelegate: sortDelegate,
+        checkBoxBuilderDelegate: checkBoxBuilderDelegate,
+        loadingDelegate: loadingDelegate,
+        badgeDelegate: badgeDelegate,
+        pickType: pickType,
+        brightness: brightness);
 
     return PhotoPicker()._pickAsset(
       context,
@@ -137,7 +135,7 @@ class PhotoPicker {
     List<AssetPathEntity>? photoList,
     List<AssetEntity>? pickedAssetList,
   ) async {
-    var requestPermission = await PhotoManager.requestPermission();
+    var requestPermission = await PhotoManager.requestPermissionExtend();
     if (requestPermission != true) {
       var result = await showDialog(
         context: context,

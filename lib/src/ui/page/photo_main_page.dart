@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:photo/src/delegate/badge_delegate.dart';
 import 'package:photo/src/delegate/loading_delegate.dart';
 import 'package:photo/src/engine/lru_cache.dart';
@@ -17,7 +16,6 @@ import 'package:photo/src/provider/i18n_provider.dart';
 import 'package:photo/src/provider/selected_provider.dart';
 import 'package:photo/src/ui/dialog/change_gallery_dialog.dart';
 import 'package:photo/src/ui/page/photo_preview_page.dart';
-import 'package:photo/src/ui/widget/logo.dart';
 import 'package:photo/src/ui/widget/single_loading_indicator.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -110,56 +108,62 @@ class _PhotoMainPageState extends State<PhotoMainPage>
       fontSize: 14.0,
     );
     return Scaffold(
-          appBar: AppBar(
-            elevation: 10,
-            brightness: options.brightness,
-            backgroundColor: widget.options.dividerColor,
-            leading: IconButton(
-              icon: Icon(
-                EvaIcons.close,
-                size: 29,
-                color: options.brightness == Brightness.dark ?options.textColor : Colors.black,
+      appBar: AppBar(
+        elevation: 10,
+        brightness: options.brightness,
+        backgroundColor: widget.options.dividerColor,
+        leading: IconButton(
+          icon: Icon(
+            EvaIcons.close,
+            size: 29,
+            color: options.brightness == Brightness.dark
+                ? options.textColor
+                : Colors.black,
+          ),
+          onPressed: _cancel,
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 40,
+              height: 40,
+              child: options.logo,
+            )
+          ],
+        ),
+        actions: <Widget>[
+          Container(
+            width: 50,
+            height: 50,
+            child: RawMaterialButton(
+              onPressed: selectedCount == 0 ? null : sure,
+              elevation: 2.0,
+              child: Icon(
+                EvaIcons.checkmarkCircle2Outline,
+                size: 25,
+                color: options.brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black87,
               ),
-              onPressed: _cancel,
+              padding: EdgeInsets.all(15.0),
+              shape: CircleBorder(),
             ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(width: 40,height: 40,child: options.logo,)
-              ],
-            ),
-            actions: <Widget>[
-
-              Container(
-                width: 50,
-                height: 50,
-                child: RawMaterialButton(
-                  onPressed: selectedCount == 0 ? null : sure,
-                  elevation: 2.0,
-                  child: Icon(
-                    EvaIcons.checkmarkCircle2Outline,
-                    size: 25,
-                    color: options.brightness == Brightness.dark ? Colors.white : Colors.black87,
-                  ),
-                  padding: EdgeInsets.all(15.0),
-                  shape: CircleBorder(),
-                ),
-              )
-            ],
-          ),
-          body: _buildBody(),
-          bottomNavigationBar: _BottomWidget(
-            key: scaffoldKey,
-            provider: i18nProvider,
-            options: options,
-            galleryName: currentGalleryName,
-            onGalleryChange: _onGalleryChange,
-            onTapPreview: selectedList.isEmpty ? null : _onTapPreview,
-            selectedProvider: this,
-            galleryListProvider: this,
-          ),
-
+          )
+        ],
+      ),
+      body: _buildBody(),
+      bottomNavigationBar: _BottomWidget(
+        key: scaffoldKey,
+        provider: i18nProvider,
+        options: options,
+        galleryName: currentGalleryName,
+        onGalleryChange: _onGalleryChange,
+        onTapPreview: selectedList.isEmpty ? null : _onTapPreview,
+        selectedProvider: this,
+        galleryListProvider: this,
+      ),
     );
   }
 
@@ -244,11 +248,11 @@ class _PhotoMainPageState extends State<PhotoMainPage>
       await assetProvider.loadMore();
     }
 
-    for (var path in pathList) {
-      if (path.isAll) {
-        path.name = i18nProvider!.getAllGalleryText(options);
-      }
-    }
+    // for (var path in pathList) {
+    //   if (path.isAll) {
+    //     path.name = i18nProvider!.getAllGalleryText(options);
+    //   }
+    // }
 
     setState(() {
       _isInit = true;
@@ -290,7 +294,6 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     var data = list[index];
     return RepaintBoundary(
       child: GestureDetector(
-
         onTap: () => _onItemClick(data, index),
         child: Stack(
           children: <Widget>[
@@ -350,7 +353,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         ),
       );
       decoration = BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
+          borderRadius: BorderRadius.all(Radius.circular(15)),
           color: themeColor);
     } else {
       decoration = BoxDecoration(

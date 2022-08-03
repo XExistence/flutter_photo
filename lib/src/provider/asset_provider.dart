@@ -1,5 +1,3 @@
-
-
 import 'package:photo_manager/photo_manager.dart';
 
 class AssetProvider {
@@ -31,8 +29,10 @@ class AssetProvider {
   bool get noMore => getPaging()?.noMore ?? false;
 
   int get count {
-    if(data.isNotEmpty) return data.length;
-        else return 0;
+    if (data.isNotEmpty)
+      return data.length;
+    else
+      return 0;
   }
 }
 
@@ -47,15 +47,13 @@ class AssetPaging {
 
   bool noMore = false;
 
-  AssetPaging(this.path, {
-        this.pageCount = 50
-      });
+  AssetPaging(this.path, {this.pageCount = 50});
 
   Future<void> loadMore() async {
     if (noMore == true) {
       return;
     }
-    var data = await path!.getAssetListPaged(page, pageCount);
+    var data = await path!.getAssetListPaged(page: page, size: pageCount);
     if (data.length == 0) {
       noMore = true;
     }
