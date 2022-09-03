@@ -48,7 +48,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
 
   List<AssetEntity> get list => assetProvider.data;
 
-  Color? get themeColor => options.themeColor;
+  Color? get color => options.color;
 
   AssetPathEntity? currentPath;
 
@@ -111,7 +111,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
       appBar: AppBar(
         elevation: 10,
         brightness: options.brightness,
-        backgroundColor: widget.options.dividerColor,
+        backgroundColor: widget.options.backgroundColor,
         leading: IconButton(
           icon: Icon(
             EvaIcons.close,
@@ -197,7 +197,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
           ),
         ),
         duration: Duration(milliseconds: 1500),
-        backgroundColor: themeColor!.withOpacity(0.7),
+        backgroundColor: color!.withOpacity(0.7),
       ),
     );
   }
@@ -269,7 +269,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     final count = assetProvider.count + (noMore ? 0 : 1);
 
     return Container(
-      color: options.dividerColor,
+      color: options.backgroundColor,
       child: GridView.builder(
         controller: scrollController,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -299,7 +299,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
           children: <Widget>[
             ImageItem(
               entity: data,
-              themeColor: themeColor,
+              color: color,
               size: options.thumbSize,
               loadingDelegate: options.loadingDelegate,
               badgeDelegate: options.badgeDelegate,
@@ -353,8 +353,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         ),
       );
       decoration = BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: themeColor);
+          borderRadius: BorderRadius.all(Radius.circular(15)), color: color);
     } else {
       decoration = BoxDecoration(
         borderRadius: BorderRadius.circular(1.0),

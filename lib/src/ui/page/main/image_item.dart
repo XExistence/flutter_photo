@@ -3,7 +3,7 @@ part of '../photo_main_page.dart';
 class ImageItem extends StatelessWidget {
   final AssetEntity? entity;
 
-  final Color? themeColor;
+  final Color? color;
 
   final int? size;
 
@@ -14,7 +14,7 @@ class ImageItem extends StatelessWidget {
   const ImageItem({
     Key? key,
     this.entity,
-    this.themeColor,
+    this.color,
     this.size = 64,
     this.loadingDelegate,
     this.badgeDelegate,
@@ -40,7 +40,7 @@ class ImageItem extends StatelessWidget {
           child: loadingDelegate!.buildPreviewLoading(
             context,
             entity,
-            themeColor,
+            color,
           ),
         );
       },

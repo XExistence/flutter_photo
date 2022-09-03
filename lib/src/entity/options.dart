@@ -13,7 +13,9 @@ class Options {
 
   final double? itemRadio;
 
-  final Color? themeColor;
+  final Color? backgroundColor;
+
+  final Color? color;
 
   final Color dividerColor;
 
@@ -37,24 +39,24 @@ class Options {
 
   final Widget logo;
 
-  const Options({
-    this.rowCount,
-    this.maxSelected,
-    this.padding,
-    this.itemRadio,
-    this.themeColor,
-    required this.dividerColor,
-    required this.logo,
-    this.textColor,
-    this.disableColor,
-    this.thumbSize,
-    this.sortDelegate,
-    this.checkBoxBuilderDelegate,
-    this.loadingDelegate,
-    this.badgeDelegate,
-    this.pickType,
-    required this.brightness
-  });
+  const Options(
+      {this.rowCount,
+      this.maxSelected,
+      this.padding,
+      this.itemRadio,
+      required this.backgroundColor,
+      required this.color,
+      required this.dividerColor,
+      required this.logo,
+      this.textColor,
+      this.disableColor,
+      this.thumbSize,
+      this.sortDelegate,
+      this.checkBoxBuilderDelegate,
+      this.loadingDelegate,
+      this.badgeDelegate,
+      this.pickType,
+      required this.brightness});
 }
 
 enum PickType {

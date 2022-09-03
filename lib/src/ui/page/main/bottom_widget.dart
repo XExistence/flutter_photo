@@ -45,11 +45,11 @@ class __BottomWidgetState extends State<_BottomWidget> {
         top: false,
         child: Container(
           decoration: BoxDecoration(
-            color: options!.dividerColor,
+            color: options!.backgroundColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.black12,
-                offset: Offset(0.0,-4), //(x,y)
+                offset: Offset(0.0, -4), //(x,y)
                 blurRadius: 2.0,
               ),
             ],
@@ -67,7 +67,9 @@ class __BottomWidgetState extends State<_BottomWidget> {
                   child: Icon(
                     EvaIcons.folderOutline,
                     size: 25,
-                    color: options!.brightness == Brightness.dark ? Colors.white : Colors.black87,
+                    color: options!.brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black87,
                   ),
                   padding: EdgeInsets.all(15.0),
                   shape: CircleBorder(),
@@ -102,12 +104,13 @@ class __BottomWidgetState extends State<_BottomWidget> {
 
   void _showGallerySelectDialog() async {
     var result = await showModalBottomSheet(
+      backgroundColor: options!.backgroundColor,
       context: context,
       builder: (ctx) => ChangeGalleryDialog(
-            galleryList: widget.galleryListProvider!.galleryPathList,
-            i18n: i18nProvider,
-            options: options,
-          ),
+        galleryList: widget.galleryListProvider!.galleryPathList,
+        i18n: i18nProvider,
+        options: options,
+      ),
     );
 
     if (result != null) widget.onGalleryChange?.call(result);

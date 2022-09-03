@@ -48,7 +48,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
 
   Options? get options => config!.options;
 
-  Color? get themeColor => options!.themeColor;
+  Color? get color => options!.color;
 
   Color? get textColor => options!.textColor;
 
@@ -128,11 +128,11 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
     );
     return Theme(
       data: data.copyWith(
-        primaryColor: options!.themeColor,
+        primaryColor: options!.color,
       ),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: config!.options!.dividerColor,
+          backgroundColor: config!.options!.backgroundColor,
           leading: BackButton(
             color: options!.textColor,
           ),
@@ -174,7 +174,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
   Widget _buildBottom() {
     return Container(
       decoration: BoxDecoration(
-        color: options!.dividerColor,
+        color: options!.backgroundColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
@@ -292,7 +292,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
 
   Widget _buildLoadingWidget(AssetEntity entity) {
     return options!.loadingDelegate!
-        .buildBigImageLoading(context, entity, themeColor);
+        .buildBigImageLoading(context, entity, color);
   }
 
   void _onPageChanged(int value) {
@@ -323,7 +323,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
           child: Stack(
             children: <Widget>[
               ImageItem(
-                themeColor: themeColor,
+                color: color,
                 entity: item,
                 size: options!.thumbSize,
                 loadingDelegate: options!.loadingDelegate,

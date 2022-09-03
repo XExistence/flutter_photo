@@ -81,7 +81,8 @@ class PhotoPicker {
     double padding = 0.5,
     Brightness brightness = Brightness.dark,
     double itemRadio = 1.0,
-    Color themeColor = Colors.black,
+    Color color = Colors.black,
+    Color backgroundColor = Colors.black,
     Color dividerColor = Colors.deepOrange,
     Color textColor = Colors.white,
     Color disableColor = Colors.grey,
@@ -110,7 +111,8 @@ class PhotoPicker {
         padding: padding,
         disableColor: disableColor,
         textColor: textColor,
-        themeColor: themeColor,
+        color: color,
+        backgroundColor: backgroundColor,
         thumbSize: thumbSize,
         sortDelegate: sortDelegate,
         checkBoxBuilderDelegate: checkBoxBuilderDelegate,
@@ -142,6 +144,9 @@ class PhotoPicker {
         context: context,
         builder: (ctx) => NotPermissionDialog(
           provider.getNotPermissionText(options),
+          color: options.color!,
+          backgroundColor: options.backgroundColor!,
+          borderColor: options.dividerColor,
         ),
       );
       if (result == true) {
