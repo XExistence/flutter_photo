@@ -72,11 +72,11 @@ class _NotPermissionDialogState extends State<NotPermissionDialog> {
     return AlertDialog(
       title: Text(provider.titleText!),
       actions: <Widget>[
-        FlatButton(
+        ElevatedButton(
           onPressed: _onCancel,
           child: Text(provider.cancelText!),
         ),
-        FlatButton(
+        ElevatedButton(
           onPressed: _onSure,
           child: Text(provider.sureText!),
         ),

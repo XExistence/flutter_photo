@@ -85,11 +85,11 @@ class _PhotoMainPageState extends State<PhotoMainPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!_isInit) {
-      final pickedList = PhotoPickerProvider.of(context)!.pickedAssetList ?? [];
-      addPickedAsset(pickedList.toList());
-      _refreshList();
-    }
+    //if (!_isInit) {
+    final pickedList = PhotoPickerProvider.of(context)!.pickedAssetList ?? [];
+    addPickedAsset(pickedList.toList());
+    _refreshList();
+    //}
   }
 
   @override
@@ -187,7 +187,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     if (isPushed) {
       return;
     }
-    Scaffold.of(scaffoldKey!.currentContext!).showSnackBar(
+    ScaffoldMessenger.of(scaffoldKey!.currentContext!).showSnackBar(
       SnackBar(
         content: Text(
           msg,

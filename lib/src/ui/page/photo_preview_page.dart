@@ -146,8 +146,14 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
           actions: <Widget>[
             StreamBuilder(
               stream: pageStream,
-              builder: (ctx, s) => FlatButton(
-                splashColor: Colors.transparent,
+              builder: (ctx, s) => ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(color),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      //side: BorderSide(color: Colors.red)
+                    ))),
                 onPressed: selectedList.length == 0 ? null : sure,
                 child: Text(
                   config!.provider!.getSureText(options, selectedList.length),

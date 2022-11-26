@@ -40,7 +40,7 @@ class _ChangeGalleryDialogState extends State<ChangeGalleryDialog> {
 
     text = text ?? entity.name;
 
-    return FlatButton(
+    return ElevatedButton(
       child: ListTile(
         title: Text("$text (${entity.assetCount})"),
       ),

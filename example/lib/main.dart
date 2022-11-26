@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> with LoadingDelegate {
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
-          FlatButton(
+          ElevatedButton(
             child: Icon(Icons.image),
             onPressed: _testPhotoListParams,
           ),
