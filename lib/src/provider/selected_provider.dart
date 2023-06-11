@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:photo_manager/photo_manager.dart';
 
-abstract class SelectedProvider {
+mixin  SelectedProvider {
   List<AssetEntity> selectedList = [];
 
   int get selectedCount => selectedList.length;

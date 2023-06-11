@@ -39,7 +39,7 @@ class PhotoMainPage extends StatefulWidget {
 }
 
 class _PhotoMainPageState extends State<PhotoMainPage>
-    with SelectedProvider, GalleryListProvider {
+    with  SelectedProvider, GalleryListProvider {
   Options get options => widget.options;
 
   I18nProvider? get i18nProvider => PhotoPickerProvider.of(context)!.provider;
@@ -110,7 +110,6 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
-        brightness: options.brightness,
         backgroundColor: widget.options.backgroundColor,
         leading: IconButton(
           icon: Icon(

@@ -76,7 +76,7 @@ class CheckboxListTile extends StatelessWidget {
     Key? key,
     required this.value,
     required this.onChanged,
-    this.activeColor,
+    required this.activeColor,
     this.checkColor,
     this.title,
     this.subtitle,
@@ -125,7 +125,7 @@ class CheckboxListTile extends StatelessWidget {
   /// The color to use when this checkbox is checked.
   ///
   /// Defaults to accent color of the current [Theme].
-  final Color? activeColor;
+  final Color activeColor;
 
   final Color? checkColor;
 
@@ -190,7 +190,7 @@ class CheckboxListTile extends StatelessWidget {
     }
     return MergeSemantics(
       child: ListTileTheme.merge(
-        selectedColor: activeColor ?? Theme.of(context).accentColor,
+        selectedColor: activeColor,
         child: ListTile(
           leading: leading,
           title: title,
