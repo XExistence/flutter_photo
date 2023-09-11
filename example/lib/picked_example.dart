@@ -36,6 +36,7 @@ class _PickedExampleState extends State<PickedExample> {
 
   void _pickAsset() async {
     final result = await PhotoPicker.pickAsset(
+      logo: Container(width: 50,height: 50,color: Colors.red,),
       context: context,
       pickedAssetList: picked,
     );

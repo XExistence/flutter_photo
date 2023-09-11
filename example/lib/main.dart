@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({required Key key, required this.title}) : super(key: key);
+  MyHomePage({required this.title});
   final String title;
 
   @override
@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> with  LoadingDelegate {
 
     PhotoPicker.clearThumbMemoryCache();
 
-    List<AssetEntity> imgList = await PhotoPicker.pickAsset(
+    List<AssetEntity>? imgList = await PhotoPicker.pickAsset(
       context: context,
       color: Colors.red,
       backgroundColor:
